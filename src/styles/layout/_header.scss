@@ -1,0 +1,46 @@
+.header {
+  overflow: hidden;
+  position: relative;
+  background-color: $darken;
+  border-bottom: 2px solid $lighten;
+}
+
+.header__left {
+  width: 50%;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo__img {
+  margin-right: 10px;;
+}
+
+.logo__text {
+  color: $light;
+  font-size: 2rem;
+  transition: .5s;
+}
+
+.logo__text:hover {
+  text-shadow: 0px 0px 10px $lighten;
+}
+.header__right {
+  width: 50%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.logo-school {
+  width: 300px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo-school__pic {
+  width: 100%;
+}

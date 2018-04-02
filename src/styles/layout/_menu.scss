@@ -1,0 +1,31 @@
+.menu {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  flex-wrap: wrap;
+  border-bottom: 2px solid $lighten;
+}
+
+.menu__row {
+  flex-grow: 1;
+  flex-flow: 1;
+  border-right: 2px solid $lighten;
+  transition: .5s;
+  &:last-child {
+    border-right: none;
+  }
+  &:hover {
+    background-color: $darken;
+  }
+}
+
+.menu__link {
+  display: block;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  color: $light;
+}

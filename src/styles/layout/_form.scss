@@ -1,0 +1,63 @@
+.form {
+  border-radius: 5px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 20px 50px 0;
+  border: 1px solid $light;
+}
+
+.form__subtitle {
+  font-size: 25px;
+  text-shadow: 1px 1px #ccc;
+  margin-bottom: 10px;
+}
+
+.form__input-line, .form__textarea {
+  margin-bottom: 20px;
+}
+
+.form__input, .form__textarea {
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+  border: 2px dashed $darken;
+  padding: 10px 5px;
+  width: 100%;
+}
+.form__input-line {
+  display: block;
+}
+
+.form__textarea {
+  resize: vertical;
+}
+
+input:focus, textarea:focus {
+  outline: 2px solid $darken;
+}
+
+.form__btns {
+  display: flex;
+  justify-content: space-around;
+}
+
+.form__btn-send, .form__btn-reset {
+  outline: none;
+  padding: 5px 15px;
+  border: 1px solid transparent;
+  transition: .5s;
+  flex: 1 1;
+}
+
+.form__btn-send:hover, .form__btn-reset:hover {
+  border: 1px solid $lighten;
+}
+
+.form__btn-send:focus, .form__btn-reset:focus {
+  outline: none;
+}
+.form__btn-send:active, .form__btn-reset:active {
+  background-color: $dark;
+}
+
+::placeholder {
+  color: $lighten;
+}
