@@ -1,12 +1,25 @@
 const nodemailer = require('nodemailer');
 const config = require('../config.json');
+const http = require('request');
+const apiOptions = {
+  server: "http://localhost:3000"
+};
 
 module.exports.index = function (req, res) {
+  const pathApi = '/api/avatar';
+  const requestOptions = {
+    url: apiOptions.server + pathApi,
+    method: "GET",
+    json: {}
+  };
   const sendObj = {
     title: 'Главная страница',
     msg: req.query.msg
   };
-  res.render('pages/index', Object.assign({}, sendObj));
+  http(requestOptions, function (error, response, body) {
+    console.log(body);
+    res.render('pages/index', Object.assign({}, sendObj, body));
+  })
 }
 
 module.exports.sendEmail = function(req, res) {
