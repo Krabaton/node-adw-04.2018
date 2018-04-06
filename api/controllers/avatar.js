@@ -22,13 +22,17 @@ module.exports.getAvatar = function(req, res) {
 }
 
 module.exports.setAvatar = function(req, res) {
-  const Model = mongoose.model('pic');
-  Model.remove({}, err => {
-    if (err) return res.status(400).json({message: err.message, error: err})
-    
-    const item = new Model({name: req.body.name, picture: req.body.picture});
-    item
-      .save()
-      .then(pic => res.status(201).json(pic), e => res.status(400).json({message: e.message, error: e}))
-  });
+  if(req.get('secure') === 'verySecret!') {
+    const Model = mongoose.model('pic');
+    Model.remove({}, err => {
+      if (err) return res.status(400).json({message: err.message, error: err})
+      
+      const item = new Model({name: req.body.name, picture: req.body.picture});
+      item
+        .save()
+        .then(pic => res.status(201).json(pic), e => res.status(400).json({message: e.message, error: e}))
+    });
+  } else {
+    res.status(401).json({message: 'Unauthorized', error: 401})
+  }
 }

@@ -1,4 +1,9 @@
 {
+  "server": {
+    "path": "http://localhost:3000",
+    "blog": "/api/blog",
+    "avatar": "/api/avatar"
+  },
   "db": {
     "host": "localhost",
     "port": "27017",

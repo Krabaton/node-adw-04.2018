@@ -2,10 +2,8 @@ const formidable = require('formidable');
 const fs = require('fs');
 const path = require('path');
 const http = require('request');
-
-const apiOptions = {
-  server: 'http://localhost:3000'
-};
+const config = require('../config/config.json');
+const apiServer = config.server.path;
 
 module.exports.admin = function (req, res) {
   res.render('pages/admin', {
@@ -38,20 +36,24 @@ module.exports.uploadAvatar = function (req, res) {
         fs.unlink(fileName);
         fs.rename(files.photo.path, fileName);
       }
-      const pathApi = '/api/avatar';
+      const pathApi = config.server.avatar;
       let dir = fileName.substr(fileName.indexOf('\\'));
       const requestOptions = {
-        url: apiOptions.server + pathApi,
+        url: apiServer + pathApi,
         method: 'POST',
         json: {
           name: fields.name,
           picture: dir
+        },
+        headers: {
+          'secure': 'verySecret!'
         }
       };
 
       http(requestOptions, function (error, response, body) {
-        if (error) {
-          return res.json({msg: 'Картинка не сохранилась в БД ' + error, status: 'Error'});
+        if (error || body.error) {
+          let msg = (error) ? 'Картинка не сохранилась в БД ' + error : body.msg + ' ' + body.error;
+          return res.json({msg: msg, status: 'Error'});
         }
         res.json({msg: 'Картинка успешно загружена', status: 'Ok'});
       });
